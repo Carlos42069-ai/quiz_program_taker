@@ -10,14 +10,14 @@ def load_questions_from_file(filename="quiz_questions.txt"):
             for block in content:
                 lines = block.strip().split("\n")
                 if len(lines)>= 6:
-                    question_text = lines [0].replace("Question: ", "")
+                    question_text = lines[0].replace("Question: ", "")
                     choices = {
-                        'a': lines [1][3].strip(),
-                        'b': lines [2][3].strip(),
-                        'c': lines [3][3].strip(),
-                        'd': lines [4][3].strip()
+                        'a': lines [1][3:].strip(),
+                        'b': lines [2][3:].strip(),
+                        'c': lines [3][3:].strip(),
+                        'd': lines [4][3:].strip()
                     }
-                    correct_choice= lines[5].replace("The correct answer is: ", "").strip()
+                    correct_choice = lines[5].replace("Correct Answer is: ", "").strip()
                     questions.append({
                         "question": question_text,
                         "options": choices,
@@ -35,7 +35,7 @@ def ask_question(question_data):
 
     user_answer = input("Your answer (a/b/c/d): ").lower()
     while user_answer not in ['a', 'b', 'c', 'd']:
-        user_answer = input("Invalid answer. Please enter within the choices a/b/c/d: "),lower()
+        user_answer = input("Invalid answer. Please enter within the choices a/b/c/d: ").lower()
 
     if user_answer == question_data["answer"]:
         print("Your answer is Correct!!")
@@ -45,9 +45,6 @@ def ask_question(question_data):
         print(f"Your answer is Wrong! The correct answer is: {question_data['answer']}){correct_option}")
         return False 
     
-        
-
-
 #Run the quiz game
 def run_quiz():
     print("Welcome to the quiz game!")
@@ -63,6 +60,6 @@ def run_quiz():
         if ask_question(question):
             score += 1
 
-        print(f"\nQuiz has been completed! Your score is {score} out of {len(saved_questions)}.")
+    print(f"\nQuiz has been completed! Your score is {score} out of {len(saved_questions)}.")
 
 run_quiz()
