@@ -29,7 +29,7 @@ def load_questions_from_file(filename="quiz_questions.txt"):
         return []
 #Ask a question to the user and check the answer
 def ask_question(question_data):
-    print("\n" + question_data["question"])\
+    print("\n" + question_data["question"])
     for key, option in question_data["options"].items():
         print(f"{key}) {option}")
 
@@ -42,7 +42,7 @@ def ask_question(question_data):
         return True
     else:
         correct_option = question_data["options"][question_data["answer"]]
-        print(f"Your answer is Wrong! The correct answer is: {question_data['answer']}){correct_option}"
+        print(f"Your answer is Wrong! The correct answer is: {question_data['answer']}){correct_option}")
         return False 
     
         
@@ -60,7 +60,7 @@ def run_quiz():
     score = 0
 
     for question in saved_questions:
-        ask_question(question):
+        if ask_question(question):
             score += 1
 
         print(f"\nQuiz has been completed! Your score is {score} out of {len(saved_questions)}.")
