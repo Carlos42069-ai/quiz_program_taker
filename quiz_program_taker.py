@@ -26,6 +26,26 @@ def load_questions_from_file(filename="quiz_questions.txt"):
         return questions
     except FileNotFoundError:
         print("No quiz questions found. Make sure to run the quz_maker_game before running the program.")    
+        return []
 #Ask a question to the user and check the answer
+def ask_question(question_data):
+    print("\n" + question_data["question"])\
+    for key, option in question_data["options"].items():
+        print(f"{key}) {option}")
+
+    user_answer = input("Your answer (a/b/c/d): ").lower()
+    while user_answer not in ['a', 'b', 'c', 'd']:
+        user_answer = input("Invalid answer. Please enter within the choices a/b/c/d: "),lower()
+
+    if user_answer == question_data["answer"]:
+        print("Your answer is Correct!!")
+        return True
+    else:
+        correct_option = question_data["options"][question_data["answer"]]
+        print(f"Your answer is Wrong! The correct answer is: {question_data['answer']}){correct_option}")
+        return False 
+    
+        
+
 
 #Run the quiz game
