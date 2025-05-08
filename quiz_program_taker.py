@@ -42,10 +42,27 @@ def ask_question(question_data):
         return True
     else:
         correct_option = question_data["options"][question_data["answer"]]
-        print(f"Your answer is Wrong! The correct answer is: {question_data['answer']}){correct_option}")
+        print(f"Your answer is Wrong! The correct answer is: {question_data['answer']}){correct_option}"
         return False 
     
         
 
 
 #Run the quiz game
+def run_quiz():
+    print("Welcome to the quiz game!")
+    saved_questions = load_questions_from_file()
+
+    if not saved_questions:
+        return
+
+    random.shuffle(saved_questions)
+    score = 0
+
+    for question in saved_questions:
+        ask_question(question):
+            score += 1
+
+        print(f"\nQuiz has been completed! Your score is {score} out of {len(saved_questions)}.")
+
+run_quiz()
